@@ -1,5 +1,5 @@
-# PKGCube Roads & Transport – Streamlit app (polished)
-# ----------------------------------------------------
+# PKGCube Roads & Transport – Streamlit app (no theme toggle)
+# -----------------------------------------------------------
 # Interactions:
 # 1) Filter by Governorate (and optional Towns)
 # 2) Show % vs. raw counts
@@ -17,17 +17,13 @@ CSV_URL = "https://linked.aub.edu.lb/pkgcube/data/b97344d097e356329ba1e182721382
 # ---------- visual style ----------
 APP_TITLE = "PKGCube Insights: Roads & Transport in Lebanon"
 PRIMARY_FONT = "Inter"
+PLOTLY_TEMPLATE = "simple_white"   # single global template
 
 # Consistent semantic colors
 STATE_COLORS = {
     "good": "#2ecc71",        # green
     "acceptable": "#f1c40f",  # amber
     "bad": "#e74c3c"          # red
-}
-
-PLOTLY_TEMPLATES = {
-    "Light": "simple_white",
-    "Dark": "plotly_dark",
 }
 
 # ------------------------- Data loading & prep -------------------------
@@ -211,7 +207,7 @@ if parts:
         },
         color_discrete_map=STATE_COLORS,
         labels={"Value": ylab, "State":"Quality"},
-        template=plotly_template,
+        template=PLOTLY_TEMPLATE,
     )
     fig1.update_layout(
         margin=dict(l=10, r=10, t=10, b=10),
@@ -249,7 +245,7 @@ if transport:
     fig2 = px.bar(
         tr, x="Mode", y="Value", text=txt,
         labels={"Value": ylab2},
-        template=plotly_template,
+        template=PLOTLY_TEMPLATE,
     )
     fig2.update_traces(textposition="outside", cliponaxis=False)
     fig2.update_layout(
