@@ -5,7 +5,6 @@
 # 2) Show % vs. raw counts
 # 3) Pick which road types to include (Main/Secondary/Agricultural)
 # 4) Optional filter: keep towns that have dedicated bus stops
-# + Theme switch (Light/Dark) and aesthetic upgrades
 
 import re, csv
 import numpy as np
@@ -125,11 +124,6 @@ st.markdown("""
 
 # Sidebar filters
 st.sidebar.header("Filters")
-
-# Theme switcher
-st.sidebar.markdown("### Theme")
-theme_choice = st.sidebar.radio("", ["Light", "Dark"], index=0, horizontal=True)
-plotly_template = PLOTLY_TEMPLATES[theme_choice]
 
 govs = sorted([g for g in df["Governorate"].dropna().unique()])
 sel_govs = st.sidebar.multiselect("Governorates", govs, default=govs[:5] if govs else [])
